@@ -1,17 +1,18 @@
 import React from "react";
 
 import Link from "next/link";
+import { it } from "node:test";
 
 async function Product() {
-  const fetchData = await fetch("https://jsonplaceholder.typicode.com/posts")
+ const fetchData = await fetch("https://jsonplaceholder.typicode.com/posts")
   const response = await fetchData.json()
   console.log(response)
   return (
     <>
       <h1>product page here</h1>
 
-      <ol>
-        {/* <li>
+      {/* <ol>
+        <li>
           <Link href="product/items1">item1</Link>
         </li>
         <li>
@@ -19,11 +20,26 @@ async function Product() {
         </li>
         <li>
           <Link href="product/items3">item3</Link>
-        </li> */}
+        </li>
         <li>
           
         </li>
-      </ol>
+      </ol> */}
+
+      {
+        response.map((item:any,index:number)=>{
+          return(
+        
+             <li><Link href={`/product/${item.id}`}>{item.title}</Link></li>
+          
+          )
+          
+          
+        })
+      }
+
+
+
     </>
   );
 }
